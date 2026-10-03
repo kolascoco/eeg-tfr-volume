@@ -1,0 +1,2 @@
+* text=auto
+data/NS_MI_TS_raw.fif filter=lfs diff=lfs merge=lfs -text
