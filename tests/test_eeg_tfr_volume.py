@@ -63,6 +63,7 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn('value="cubic" selected', text)
         self.assertIn("function cubic1", text)
         self.assertIn('id="eventPage"', text)
+        self.assertIn("box(w,h,...extents)", text)
 
 
 if __name__ == "__main__":
