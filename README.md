@@ -3,7 +3,7 @@
 Interactive exploration of event-locked EEG power as a dense
 channel × time × frequency volume.
 
-[Open the public interactive demo](https://OWNER.github.io/eeg-tfr-volume/)
+[Open the public interactive demo](https://kolascoco.github.io/eeg-tfr-volume/)
 
 The signal-processing pipeline uses MNE-Python. The browser viewer supports:
 
@@ -48,11 +48,9 @@ the same MNE pipeline, and writes `docs/index.html` for GitHub Pages.
 
 ## Publish GitHub Pages
 
-1. Replace `OWNER` in the demo link above with the GitHub account or
-   organization name.
-2. Push the repository to GitHub.
-3. In **Settings → Pages**, select **GitHub Actions** as the source.
-4. The included workflow deploys `docs/` after each push to `main`.
+1. Push the repository to GitHub.
+2. In **Settings → Pages**, select **GitHub Actions** as the source.
+3. The included workflow deploys `docs/` after each push to `main`.
 
 ## Data policy
 
