@@ -62,6 +62,7 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn('"channels":["C3","C4","Cz"]', text)
         self.assertIn('value="cubic" selected', text)
         self.assertIn("function cubic1", text)
+        self.assertIn('id="eventPage"', text)
 
 
 if __name__ == "__main__":

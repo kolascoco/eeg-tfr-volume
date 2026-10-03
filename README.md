@@ -37,14 +37,20 @@ python src/eeg_tfr_volume.py build data/NS_MI_TS_raw.fif \
   --cache recording-11-3.npz
 ```
 
-## Generate the public synthetic demo
+## Generate the public real-recording demos
 
 ```bash
-python scripts/generate_demo.py
+python scripts/generate_public_recording.py
 ```
 
-This creates a deterministic synthetic FIF under `data/`, processes it with
-the same MNE pipeline, and writes `docs/index.html` for GitHub Pages.
+This processes events `11/3`, `11/100`, and `11/200` from the included EEG
+recording. It writes `docs/index.html` plus two linked event pages. The default
+landing page shows event `11/3`; the viewer's **Published event** selector moves
+between all three precomputed volumes.
+
+For a small deterministic development fixture, run `scripts/generate_demo.py`.
+That script overwrites `docs/index.html` with synthetic data and is not used for
+the published real-recording demo.
 
 ## Publish GitHub Pages
 

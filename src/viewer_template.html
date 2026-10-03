@@ -44,6 +44,7 @@
   <aside>
     <h1>EEG spectral volume</h1>
     <p id="subtitle"></p>
+    <label id="eventPageLabel" hidden><span class="row"><span>Published event</span></span><select id="eventPage"></select></label>
     <label><span class="row"><span>Display</span></span><select id="mode"><option value="slices">Dense orthogonal slices</option><option value="cloud">Dense threshold volume</option></select></label>
     <label><span class="row"><span>Interpolation</span></span><select id="interpolation"><option value="cubic" selected>Cubic (default)</option><option value="linear">Linear</option><option value="none">None / native voxels</option></select></label>
     <label id="polarityLabel"><span class="row"><span>Volume polarity</span></span><select id="polarity"><option value="high">Increases</option><option value="low">Decreases</option><option value="both">Both tails</option></select></label>
@@ -119,6 +120,8 @@ for(let el of Object.values(controls))el.addEventListener('input',draw);
 canvas.addEventListener('pointerdown',e=>{drag=true;activeView='perspective';lastX=e.clientX;lastY=e.clientY;canvas.setPointerCapture(e.pointerId)});canvas.addEventListener('pointermove',e=>{if(!drag)return;yaw+=(e.clientX-lastX)*.008;pitch=Math.max(-1.35,Math.min(1.35,pitch+(e.clientY-lastY)*.008));lastX=e.clientX;lastY=e.clientY;draw()});canvas.addEventListener('pointerup',()=>drag=false);canvas.addEventListener('wheel',e=>{e.preventDefault();controls.t.value=Math.max(0,Math.min(NT-1,+controls.t.value+Math.sign(e.deltaY)));draw()},{passive:false});canvas.addEventListener('dblclick',()=>{activeView='perspective';yaw=-.62;pitch=.42;draw()});document.getElementById('reset').onclick=()=>{activeView='perspective';yaw=-.62;pitch=.42;controls.ch.value=Math.floor(NC/2);controls.t.value=Math.floor(NT/2);controls.f.value=Math.floor(NF/2);draw()};
 document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{controls.mode.value='slices';activeView=button.dataset.view;if(activeView==='time-frequency'){yaw=0;pitch=-Math.PI/2+.015}else if(activeView==='time-channel'){yaw=0;pitch=0}else{yaw=Math.PI/2;pitch=0}draw()}));
 document.getElementById('subtitle').textContent=`${payload.metadata.config.event} · ${payload.metadata.n_epochs_used} epochs · ${NC} channels`;
+const eventPages=payload.metadata.public_event_pages||[];
+if(eventPages.length){let label=document.getElementById('eventPageLabel'),select=document.getElementById('eventPage');for(let page of eventPages){let option=document.createElement('option');option.value=page.href;option.textContent=page.label;option.selected=page.event===payload.metadata.config.event;select.appendChild(option)}select.addEventListener('change',()=>{window.location.href=select.value});label.hidden=false;}
 document.getElementById('low').textContent=payload.volume.low.toPrecision(3);document.getElementById('high').textContent=payload.volume.high.toPrecision(3);document.getElementById('metadata').textContent=JSON.stringify(payload.metadata,null,2);
 new ResizeObserver(draw).observe(canvas);draw();
 </script>
