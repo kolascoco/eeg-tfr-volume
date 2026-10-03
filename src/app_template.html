@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EEG volume builder</title>
+  <style>
+    :root { color-scheme:dark; --bg:#071018; --panel:#0e1a25; --line:#284052; --text:#e6f1f8; --muted:#91a7b6; --accent:#4fd1c5; --danger:#ff8a8a; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--bg); color:var(--text); font:15px/1.45 system-ui,-apple-system,sans-serif; }
+    main { max-width:880px; margin:0 auto; padding:42px 22px 80px; }
+    h1 { font-size:28px; margin:0 0 6px; } h2 { font-size:17px; margin:30px 0 12px; }
+    p { color:var(--muted); margin:0 0 22px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:20px; margin-top:18px; }
+    .drop { display:block; border:1px dashed var(--line); border-radius:10px; padding:28px; text-align:center; }
+    .drop:hover { border-color:var(--accent); }
+    input[type=file] { width:100%; }
+    label { display:block; color:var(--muted); }
+    input,select,button { width:100%; margin-top:5px; border:1px solid var(--line); background:#142431; color:var(--text); border-radius:7px; padding:10px; font:inherit; }
+    input[type=checkbox] { width:auto; margin-right:8px; }
+    button { background:var(--accent); color:#06201e; border:0; font-weight:650; margin-top:20px; }
+    button:disabled { opacity:.45; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .span { grid-column:1/-1; } .check { display:flex; align-items:center; color:var(--text); margin-top:10px; }
+    .status { margin-top:16px; color:var(--muted); white-space:pre-wrap; }
+    .error { color:var(--danger); }
+    .progress { height:7px; background:#182a38; border-radius:5px; overflow:hidden; margin-top:14px; }
+    .progress div { height:100%; width:0; background:var(--accent); transition:width .2s; }
+    a { color:var(--accent); }
+    @media(max-width:660px){.grid{grid-template-columns:1fr 1fr}.span{grid-column:1/-1}}
+  </style>
+</head>
+<body><main>
+  <h1>EEG spectral volume builder</h1>
+  <p>Everything stays on this computer. MNE reads the FIF annotations, then you choose which event defines the epochs.</p>
+  <section class="card">
+    <label class="drop">Choose a real EEG FIF file<input id="file" type="file" accept=".fif"></label>
+    <div class="progress" aria-hidden="true"><div id="uploadBar"></div></div>
+    <div id="inspectStatus" class="status">No file selected.</div>
+  </section>
+  <section id="settings" class="card" hidden>
+    <div class="grid">
+      <label class="span">Epoch event<select id="event"></select></label>
+      <label>Epoch start (s)<input id="tmin" type="number" value="-0.4" step="0.05"></label>
+      <label>Epoch end (s)<input id="tmax" type="number" value="2" step="0.05"></label>
+      <label>Time step (s)<input id="timeStep" type="number" value="0.02" min="0.001" step="0.005"></label>
+      <label>Minimum frequency (Hz)<input id="fmin" type="number" value="4" min="0.1" step="1"></label>
+      <label>Maximum frequency (Hz)<input id="fmax" type="number" value="80" min="1" step="1"></label>
+      <label>Frequency bins<input id="nFreqs" type="number" value="30" min="2" max="100" step="1"></label>
+      <label>Morlet cycles<input id="cycles" type="number" value="3" min="1" step="0.5"></label>
+      <label>Baseline start (s)<input id="baselineStart" type="number" value="-0.4" step="0.05"></label>
+      <label>Baseline end (s)<input id="baselineEnd" type="number" value="0" step="0.05"></label>
+      <label>Reject peak-to-peak (µV, optional)<input id="reject" type="number" min="1" step="1" placeholder="No guessed threshold"></label>
+      <label>Worker processes<input id="nJobs" type="number" value="1" min="1" max="16" step="1"></label>
+      <label class="check span"><input id="averageReference" type="checkbox">Apply average EEG reference</label>
+    </div>
+    <button id="build" type="button">Build dense interactive volume</button>
+    <div id="buildStatus" class="status"></div>
+  </section>
+</main>
+<script>
+let uploadId=null;
+const q=id=>document.getElementById(id), fileInput=q('file'), settings=q('settings'), eventSelect=q('event');
+fileInput.addEventListener('change',async()=>{
+  const file=fileInput.files[0]; if(!file)return; uploadId=null; settings.hidden=true;
+  q('inspectStatus').className='status'; q('inspectStatus').textContent=`Uploading ${file.name} locally…`;
+  try {
+    const xhr=new XMLHttpRequest();
+    const result=await new Promise((resolve,reject)=>{xhr.open('POST',`/api/inspect?name=${encodeURIComponent(file.name)}`);xhr.upload.onprogress=e=>{if(e.lengthComputable)q('uploadBar').style.width=`${e.loaded/e.total*100}%`};xhr.onload=()=>xhr.status===200?resolve(JSON.parse(xhr.responseText)):reject(new Error(JSON.parse(xhr.responseText).error||`HTTP ${xhr.status}`));xhr.onerror=()=>reject(new Error('Local upload failed'));xhr.send(file)});
+    uploadId=result.upload_id; eventSelect.innerHTML='';
+    for(const [label,count] of Object.entries(result.file.event_counts)){const o=document.createElement('option');o.value=label;o.textContent=`${label} — ${count} events`;eventSelect.appendChild(o)}
+    q('inspectStatus').textContent=`${file.name}\n${result.file.n_channels} channels · ${result.file.sfreq_hz} Hz · ${result.file.duration_s.toFixed(1)} s`;
+    settings.hidden=false;
+  } catch(error){q('inspectStatus').className='status error';q('inspectStatus').textContent=error.message}
+});
+q('build').addEventListener('click',async()=>{
+  if(!uploadId)return; const button=q('build');button.disabled=true;q('buildStatus').className='status';q('buildStatus').textContent='MNE is computing the time–frequency volume. Large recordings can take several minutes…';
+  const value=id=>q(id).value;
+  const body={upload_id:uploadId,event:eventSelect.value,tmin:+value('tmin'),tmax:+value('tmax'),time_step:+value('timeStep'),fmin:+value('fmin'),fmax:+value('fmax'),n_freqs:+value('nFreqs'),cycles:+value('cycles'),baseline_start:+value('baselineStart'),baseline_end:+value('baselineEnd'),reject_peak_to_peak_uv:value('reject')||null,n_jobs:+value('nJobs'),average_reference:q('averageReference').checked};
+  try{const response=await fetch('/api/build',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const result=await response.json();if(!response.ok)throw new Error(result.error||`HTTP ${response.status}`);q('buildStatus').innerHTML=`Built from ${result.n_epochs_used} epochs. <a href="${result.viewer_url}">Open dense volume viewer</a><br><small>${result.viewer_path}</small>`;location.href=result.viewer_url}catch(error){q('buildStatus').className='status error';q('buildStatus').textContent=error.message}finally{button.disabled=false}
+});
+</script></body></html>

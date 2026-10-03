@@ -1,0 +1,12 @@
+{
+  "name": "EEG TFR Volume",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bookworm",
+  "postCreateCommand": "python -m pip install --upgrade pip && python -m pip install -r requirements.txt",
+  "forwardPorts": [8765],
+  "portsAttributes": {
+    "8765": {
+      "label": "EEG volume app",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
