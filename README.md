@@ -3,79 +3,39 @@
 Interactive exploration of event-locked EEG power as a dense
 channel × time × frequency volume.
 
-[Open the public interactive demo](https://kolascoco.github.io/eeg-tfr-volume/)
+## Dependencies
 
-The signal-processing pipeline uses MNE-Python. The browser viewer supports:
+- Python 3.11
+- Git LFS
+- MNE-Python 1.6.1
+- NumPy 1.24–1.x
+- SciPy 1.10–1.14
 
-- dense cubic, linear, and native-voxel rendering;
-- rotatable orthogonal slices and threshold volumes;
-- time × frequency, time × channel, and channel × frequency views;
-- posterior-to-anterior channel ordering;
-- event-onset highlighting, scrolling, color thresholds, and time stretching.
-
-## Run locally or in GitHub Codespaces
+Install the Python dependencies from `requirements.txt`:
 
 ```bash
-python src/eeg_tfr_volume.py serve --host 0.0.0.0 --port 8765
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-Open port 8765, select a FIF recording, choose its annotation event, and build
-the volume. In Codespaces, the forwarded port opens in the browser.
-
-## Included EEG recording
-
-`data/NS_MI_TS_raw.fif` is the repository owner's recording and is intentionally
-shared for demonstration and reproducibility. It is stored with Git LFS. See
-[`data/README.md`](data/README.md) for the measured metadata inventory.
-
-Generate a viewer from event `11/3`, for example:
+Download the example recording tracked with Git LFS:
 
 ```bash
-python src/eeg_tfr_volume.py build data/NS_MI_TS_raw.fif \
-  --event 11/3 \
-  --output docs/recording-11-3.html \
-  --cache recording-11-3.npz
+git lfs install
+git lfs pull
 ```
 
-## Generate the public real-recording demos
+`data/NS_MI_TS_raw.fif` is the my eeg example recording shared for demonstration.
+
+## Run locally
+
+Start the MNE processing server:
 
 ```bash
-python scripts/generate_public_recording.py
+python src/eeg_tfr_volume.py serve --host 127.0.0.1 --port 8765
 ```
 
-This processes events `11/3`, `11/100`, and `11/200` from the included EEG
-recording. It writes `docs/index.html` plus two linked event pages. The default
-landing page shows event `11/3`; the viewer's **Published event** selector moves
-between all three precomputed volumes.
-
-For a small deterministic development fixture, run `scripts/generate_demo.py`.
-That script overwrites `docs/index.html` with synthetic data and is not used for
-the published real-recording demo.
-
-## Publish GitHub Pages
-
-1. Push the repository to GitHub.
-2. In **Settings → Pages**, select **GitHub Actions** as the source.
-3. The included workflow deploys `docs/` after each push to `main`.
-
-## Data policy
-
-The repository owner explicitly authorized publication of the included
-recording. Its standard MNE metadata fields were audited before publication;
-the audit found no subject name, experimenter, project name, measurement date,
-description, device information, or `subject_info`. This does not prove that
-EEG is non-identifying. Do not add recordings from other participants without
-their release authorization and a fresh metadata audit.
-
-## Tests
-
-```bash
-PYTHONPATH=src MPLCONFIGDIR=/tmp/mpl-eeg python -m unittest -v tests/test_eeg_tfr_volume.py
-```
-
-## Scientific limitation
-
-Interpolation along the channel index is a display operation, not anatomical
-interpolation. The viewer orders channels posterior-to-anterior using MNE head
-coordinates but does not claim that adjacent rows are equally spaced on the
-scalp.
+Open <http://127.0.0.1:8765>, select a FIF recording, choose an annotation
+event, adjust the preprocessing parameters, and build the interactive volume.
