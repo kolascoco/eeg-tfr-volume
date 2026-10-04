@@ -64,6 +64,8 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn("function cubic1", text)
         self.assertIn('id="eventPage"', text)
         self.assertIn("box(w,h,...extents)", text)
+        self.assertIn("channelLandmarkTicks", text)
+        self.assertIn("G[gidx(ci,fi,0)]", text)
 
 
 if __name__ == "__main__":
