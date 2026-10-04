@@ -63,11 +63,14 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn('value="cubic" selected', text)
         self.assertIn("function cubic1", text)
         self.assertIn('id="eventPage"', text)
-        self.assertIn("box(w,h,...extents)", text)
+        self.assertIn("box(w,h,...bounds)", text)
         self.assertIn("channelLandmarkTicks", text)
-        self.assertIn("G[gidx(ci,fi,0)]", text)
+        self.assertIn("G[gidx(ci,fi,gt0)]", text)
         self.assertIn('id="opacity"', text)
-        self.assertIn("Fill the cuboid", text)
+        self.assertIn("baseAlpha=", text)
+        self.assertIn('id="timeStart"', text)
+        self.assertIn('id="freqStart"', text)
+        self.assertIn('id="zoom"', text)
 
 
 if __name__ == "__main__":
