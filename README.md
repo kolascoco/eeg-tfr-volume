@@ -3,6 +3,8 @@
 Interactive exploration of event-locked EEG power as a dense
 channel × time × frequency volume.
 
+[Open the public interactive demo](https://kolascoco.github.io/eeg-tfr-volume/)
+
 ## Dependencies
 
 - Python 3.11
