@@ -73,6 +73,9 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn('id="zoom"', text)
         self.assertIn('id="softness"', text)
         self.assertIn("u*u*(3-2*u)", text)
+        self.assertIn("Inverted / decreases", text)
+        self.assertIn("function thread", text)
+        self.assertIn("drawStructureOutline", text)
 
 
 if __name__ == "__main__":
