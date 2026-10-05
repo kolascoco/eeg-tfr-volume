@@ -68,6 +68,8 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn("G[gidx(ci,fi,gt0)]", text)
         self.assertIn('id="opacity"', text)
         self.assertIn("baseAlpha=", text)
+        self.assertIn("X-ray interior opacity", text)
+        self.assertIn("opacity.value/100)*.28", text)
         self.assertIn('id="timeStart"', text)
         self.assertIn('id="freqStart"', text)
         self.assertIn('id="zoom"', text)
