@@ -71,6 +71,8 @@ class TestEEGTFRVolume(unittest.TestCase):
         self.assertIn('id="timeStart"', text)
         self.assertIn('id="freqStart"', text)
         self.assertIn('id="zoom"', text)
+        self.assertIn('id="softness"', text)
+        self.assertIn("u*u*(3-2*u)", text)
 
 
 if __name__ == "__main__":
