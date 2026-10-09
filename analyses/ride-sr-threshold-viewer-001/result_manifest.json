@@ -1,0 +1,32 @@
+{
+  "primary_artifact": {
+    "path": "docs/ride.html",
+    "bytes": 35863759,
+    "sha256": "013878323d9230b5704c8f3e49f4e93462abbf7bec8cdfd86bbaba49ce858021"
+  },
+  "sources": {
+    "src/ride_volume.py": "d7024351beba365c5afe8fedf710e904e8935744074445856b9aa1f0b33cdadb",
+    "src/ride_viewer_template.html": "1c67a770734914e7a8c6dc491a562d7db1a3048e977d8a8b23970f7ae2dce5d9",
+    "scripts/generate_ride_viewer.py": "de9355aa12dbfd974cf62c8a33b744a7530b0900fcaa5a29fd06ac61ff9df6da",
+    "tests/test_ride_volume.py": "81d0307a1e82e08909fcd60488ee0da57cd1e7887c5bbe2f3310ab46a0752d5d",
+    "tests/test_ride_real_data.py": "f672938e6d0ed79f81955ac3785d4fc9b247863b71662bd79432500af18f977f",
+    "README.md": "aeb972955e540fb51af0ce711e791a0ebc11a23c077cd50fb4d53b5295f6a496"
+  },
+  "provenance": {
+    "config.json": "0a7e2917e494ae9afb709434d0ac0f596ab31abf484b649d1349464539ae1d45",
+    "gate_status.json": "35e6ebc8a1193532faa0dbe5fd1974d164faa83cf59900afdcf8f5c20b92fa72",
+    "input_manifest.json": "73fd60b9c2adde6cb48eb021b035e8d248014a045b15ae005cb904d5ca890083",
+    "report.md": "d66d81c2006a6a0cf9a3720737d595f62b42cf858822889abba8d4ff1c418d53",
+    "final_report.md": "2570e925dc866d5614df1b816dd36fc280ae421257d0fe9616467197e84b5b98",
+    "results/adversarial_review.md": "00f7fb51749308f13f51b48a90ecb6a96acdee99951223eef523a3470171d764",
+    "tests/README.md": "99dce3820a4ca992c58d32abfb8e9f1748ba546c0b89e774d28494d6fbabf404"
+  },
+  "verification": {
+    "unit_and_real_data_tests": "11 passed",
+    "git_diff_check": "passed",
+    "browser_visual_check": "passed for threshold and dense modes",
+    "browser_interaction_check": "passed for dense/threshold switching, polarity, time crop, and channel crop",
+    "browser_console": "no warnings or errors",
+    "worst_case_threshold_check": "minimum vlim/threshold capped S at 2400/45214 and R at 2400/45241; dense-to-threshold interaction completed in 95 ms"
+  }
+}

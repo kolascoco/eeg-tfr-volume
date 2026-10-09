@@ -1,0 +1,22 @@
+{
+  "validated_at": "2026-10-07T15:07:02+02:00",
+  "input_sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a",
+  "viewer_sha256": "a07c0e65dd715b899d2165370783727372909c0149dbc6e18fabf5dd72cb004a",
+  "viewer_bytes": 28864982,
+  "shape_trial_channel_time": [147, 28, 1751],
+  "time_ms": {"start": -1500, "stop": 2000, "zero_index": 750},
+  "response_time_ms": {"minimum": 306, "maximum": 860, "sorted_monotonic": true},
+  "shared_display_scale_uv": [-18.916752378572685, 18.916752378572685],
+  "encoded_unique_values": {"S": 256, "C": 256, "R": 256},
+  "automated_tests": {"repository_passed": 9, "ride_specific_passed": 6, "failed": 0},
+  "render_sampling": {"draw_accesses": 17244, "unique_voxels": 17094, "unique_percent": 0.237182},
+  "color_saturation": {"S": {"voxels": 35631, "percent": 0.494386}, "C": {"voxels": 36036, "percent": 0.500006}, "R": {"voxels": 35744, "percent": 0.495954}},
+  "javascript_parse": "PASS",
+  "browser_render": {
+    "status": "PASS",
+    "canvases": 3,
+    "console_warnings": 0,
+    "console_errors": 0,
+    "controls_checked": ["RT sort", "original order", "time x trial", "perspective", "complete RT curtain", "unit disclosure", "sampling disclosure", "extrema provenance"]
+  }
+}

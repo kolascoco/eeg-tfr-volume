@@ -1,0 +1,42 @@
+{
+  "analysis_id": "ride-multirecording-hemisphere-viewer-003",
+  "status": "PASS-WITH-RISKS",
+  "publication_status": "READY_FOR_USER_COMMIT_AND_PUSH",
+  "sources": [
+    {"path":"../../data/S02_far_RIDE_result.mat","sha256":"4afeb867014468ed3fc8e3b9640b90f2b1e2947c43a932189952edfd9f6d6a03","trials":149},
+    {"path":"../../data/S04_far_RIDE_result.mat","sha256":"6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0","trials":137},
+    {"path":"../../data/S07_far_RIDE_result.mat","sha256":"09423f5b3223c08ed6ce8532ff223b9b886e5bddfabe8ebeece0d86dab482300","trials":171}
+  ],
+  "outputs": [
+    {"path":"../../docs/ride.html","bytes":75349,"sha256":"cb74cc9d528138994679cea87972ceaec1e16424e0090f51cae44a8eca1f6727"},
+    {"path":"../../docs/ride-volume-S.i16.gz","bytes":32370614,"sha256":"482f7400c7009dcf8978231e11ed24e86ff9eab5d0b06cffc00f5ce8a21bd804","expanded_bytes":44811592,"layout":"gzip-compressed S; 457 x 28 x 1751; signed int16 little-endian; 0.01 microvolts/count"},
+    {"path":"../../docs/ride-volume-R.i16.gz","bytes":32402319,"sha256":"fa930222804802f8189f3931f2780156a569897b9db3bb39e45f2405fa1c000a","expanded_bytes":44811592,"layout":"gzip-compressed R; 457 x 28 x 1751; signed int16 little-endian; 0.01 microvolts/count"},
+    {"path":"../../docs/ride-volume.json","bytes":47616,"sha256":"e3baad51f5e611114ed4c21c9292353010b478d2f96546b5eb655a5873800c75","role":"compact data contract and provenance manifest"}
+  ],
+  "implementation": [
+    {"path":"../../src/ride_volume.py","sha256":"98de9654d0f65e026ac9683278bc611d02f5c46abf4f09cf72a53c946298e08e"},
+    {"path":"../../src/ride_viewer_template.html","sha256":"20fc0140866a09390197a55181c95fb112c274c4e935c676951fc1bf872e15a3"},
+    {"path":"../../scripts/generate_ride_viewer.py","sha256":"1648e1b77a0c4338c80d00e993d6d4510f9d51641adb14224998130011863524"},
+    {"path":"../../tests/hemisphere_regression.js","sha256":"6f9fd81038b3c22b9dc83a42e9a02e410aac83a9d758a3c989d62911ab19c4de"},
+    {"path":"../../tests/channel_window_regression.js","sha256":"0131070d19c42f070d04b56a6709c47f41ad7216afd9656e4ed20eecf5c1c05e"},
+    {"path":"../../tests/montage_interaction_regression.js","sha256":"401a41f4c6217a3bc11ee3a4d9175283ee6f795772ce9d4311f9f3a2b614e97e"},
+    {"path":"../../tests/trial_window_regression.js","sha256":"ccf296f997e988bc978bd007641c9de3bdfb3f49150f20eb8cb330861b50cd19"},
+    {"path":"../../tests/test_ride_volume.py","sha256":"cbac815a520f0251423e9e68db462a695c745af0fa924b86f4732ea57eef8661"},
+    {"path":"../../tests/test_ride_real_data.py","sha256":"3b69edf867eb4612af61e7465b2f4b9049e9d2fdc0afc0684d67b4c9cb29b73d"},
+    {"path":"../../README.md","sha256":"ef82f8547e793c57769cbeae69e319823afacf74b4d6b8dc4152ef94e5a948fb"}
+  ],
+  "validation_artifacts": [
+    {"path":"final_report.md","sha256":"70f421dd94f3325e6b7ce81193fc96da525669d3dbe3915b7dcd83bf5b74e17b"},
+    {"path":"results/xray_measurement.js","sha256":"e5b6eb89e970d5f29c797dddd242c1e445af86bfdd8a830fabb962f627d76b59"},
+    {"path":"results/browser_validation.json","sha256":"5d5a585f0d8611659de01bbb8782dffb2e780b49f52823b268b7444df9a29151"},
+    {"path":"results/adversarial_review.md","sha256":"01672e98b43a2f0733346738f4cc6062270b699ddcf88407ba59167470b90d1c"},
+    {"path":"results/compact_transport_validation.json","sha256":"a5c05ec25d4c5ec1daf8500772184a0157536bf2ec06fbcf0620385a2324040f"}
+  ],
+  "validation": {
+    "tests": "18/18 PASS",
+    "test_command": "PYTHONPATH=src python3 -m unittest discover -s tests -v",
+    "browser": "PASS after gzip download/decompression; both canvases nonblank and zero captured warnings/errors; see results/compact_transport_validation.json",
+    "browser_runtime": "Chrome 154.0.0.0; Codex host-managed Playwright API package version not exposed",
+    "adversarial_review": "PASS-WITH-RISKS after independent compact-transport source equivalence, integrity, corruption, deterministic re-encode, targeted-test, instrument-chain, and live-browser review"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "analysis_id": "ride-c3-selection-001",
+  "created_at": "2026-10-07T15:35:00+02:00",
+  "results": [
+    {"path": "results/c3_all_recordings_heatmaps.png", "sha256": "bd41b52b75644e8fba41e7d6bf56900bf41b2fefd244b2b1ab21c802cacccbf8", "dimensions_px": [3060, 2520]},
+    {"path": "results/c3_mean_waveforms.png", "sha256": "56d8350dd8a6f5aad317b9416c7034d8b0602a03316b591d9f956dbda0dc0a5e", "dimensions_px": [2340, 1800]},
+    {"path": "results/c3_metrics.csv", "sha256": "3245afe0a7c916c40ba30ec5022c4a0a1614b17e595bf742e4bfba3e29d060c7"},
+    {"path": "results/summary.json", "sha256": "50f8bcedf00def807c2fd8d17cf688d4d9da691281c88d5f76ff4fb18d436ad3"}
+  ],
+  "tests": {"command": "python3 -m unittest -v analyses/ride-c3-selection-001/tests/test_c3_comparison.py", "status": "PASS", "count": 2},
+  "visual_inspection": "PASS"
+}

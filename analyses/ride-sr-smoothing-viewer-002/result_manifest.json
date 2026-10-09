@@ -1,0 +1,34 @@
+{
+  "primary_artifact": {
+    "path": "docs/ride.html",
+    "bytes": 35879625,
+    "sha256": "050306a8620edbc7f9d92ed1e19e723431b6a9b66db9d6ef02ea9eff5bb5c504"
+  },
+  "sources": {
+    "src/ride_volume.py": "e64c8f5ef80eec82387916d21733bef4f4d73e5249fda03e7b620c9db6c2684f",
+    "src/ride_viewer_template.html": "b508fcf816a85fc7f990722dd3f813697ace5434988715b14000e1add7937ce9",
+    "scripts/generate_ride_viewer.py": "de9355aa12dbfd974cf62c8a33b744a7530b0900fcaa5a29fd06ac61ff9df6da",
+    "tests/channel_window_regression.js": "f552228188ea981f1d764488c2e7ba0fb13a805f1215e636031f0515ddeaf54f",
+    "tests/test_eeg_tfr_volume.py": "12671c6e25e6de80b8e9ea7cb32a733c17c3997e8202276c13c7e40695c76d6c",
+    "tests/test_ride_volume.py": "f40b8e0ccf1499e4ab26e296a89fac1300e89e39fc649b3d2ec7d1aa81685f70",
+    "tests/test_ride_real_data.py": "f672938e6d0ed79f81955ac3785d4fc9b247863b71662bd79432500af18f977f",
+    "README.md": "c502ed50df3ac5f9eeda9b0784c570a61509e2333ec7dd0a968684ed310e0bf0"
+  },
+  "governance": {
+    "analyses/ride-sr-smoothing-viewer-002/config.json": "4e4a4366dd93ade622e2a944377f9243d14e7cdd2970dca78d2dc46f6f51fa7a",
+    "analyses/ride-sr-smoothing-viewer-002/gate_status.json": "4d816f06d1f5cc7aab22e83bc30eb5e3bfb76a927a4e4d2753a689d808258da5",
+    "analyses/ride-sr-smoothing-viewer-002/input_audit.md": "cf12f95d2f0d73cda5f7dc9dfd4571b27138ef2582209030ec9322aa3495e69e",
+    "analyses/ride-sr-smoothing-viewer-002/input_manifest.json": "220b39bb6754046aee4d3d8ee7a6c46021c2aa7bd738c073c616049ef10a6a5b",
+    "analyses/ride-sr-smoothing-viewer-002/log.md": "58b8a53614405050b6dd10dde1c2d24a91ff621505e6aaff5382c86cda0d62ca",
+    "analyses/ride-sr-smoothing-viewer-002/final_report.md": "f4e0c1ab64dfabde56ed4fbc1237500a45b873e3102ac0a1969b9bbdd03d4b7b",
+    "analyses/ride-sr-smoothing-viewer-002/plan.md": "a2f6482ba9e9c4c6ee14f2d4b619a487fc98a48a94fb820b22ff5d4ba32b096a",
+    "analyses/ride-sr-smoothing-viewer-002/results/adversarial_review.md": "6cfaecf7e481351f66b9d5ccc6b7d9263fc9b384905e6aa4ed8c48c2d72d5551",
+    "analyses/ride-sr-smoothing-viewer-002/results/adversarial_xray_measurement.js": "b839f98b1e58515f2310342592b705c45656d3f55251ba540aa5982927d8f9d9"
+  },
+  "verification": {
+    "tests": "PYTHONPATH=src MPLCONFIGDIR=/tmp/mpl-eeg-channel-scroll-final python3 -m unittest discover -s tests -v — 13/13 passed in 8.218 s; production channel-window regression covered 172,550 endpoint transitions with 0 failures",
+    "config_validator": "CONFIG VALID -- instrument chain: PASS (5 stages)",
+    "browser": "Chrome/154.0.0.0 CanvasRenderingContext2D; visible windows F3-O2, FCz-C3, C3, FCz, and P3-O2 rendered; montage reset and endpoint crossing passed; no warnings/errors",
+    "adversarial_review": "PASS-WITH-RISKS — 18/18 pre-review manifest entries matched; template and published HTML each passed 172,550 transitions with 0 failures; relevant maintained suite 10/10 passed in 6.397 s"
+  }
+}

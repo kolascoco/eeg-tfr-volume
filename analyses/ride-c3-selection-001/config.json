@@ -1,0 +1,51 @@
+{
+  "analysis_id": "ride-c3-selection-001",
+  "status": "retrospective_locked",
+  "frozen_at": "2026-10-07T15:32:03+02:00",
+  "purpose": "descriptive exploratory recording selection",
+  "sources": [
+    {"path": "../../data/S01_near_RIDE_result.mat", "sha256": "ab02054d22adb122ae2d846804cc9e2ea8fded018bdfdab7a01538d650f1e8fc"},
+    {"path": "../../data/S04_far_RIDE_result.mat", "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0"},
+    {"path": "../../data/S14_near_RIDE_result.mat", "sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a"},
+    {"path": "../../data/S17_near_RIDE_result.mat", "sha256": "cebed216caba10785ffd5f0349ffdbd5e78437ec88bb1ac11419e9e137d7eee6"},
+    {"path": "/Users/nikolaj_syrov/Documents/Python_proj/SK/VMT_rTMS/Near_Far_Ride_multivariate pattern analysis.ipynb", "sha256": "de85394132e61b9b7a8feb8ac1ebbb1b9d50ef54d99a28d306fb530bf7550ce0"},
+    {"path": "/Users/nikolaj_syrov/Documents/Python_proj/SK/VMT_rTMS/Near_Far_Ride_Results.ipynb", "sha256": "e369fe8462d7eea6c92eeacd09b733302935bf26da410600b1bb1bb61e8dca3e"},
+    {"path": "/Users/nikolaj_syrov/Documents/Python_proj/SK/VMT_rTMS/Far_Close-MI_MA_ME.ipynb", "sha256": "25b6d94ef89ceff0f008be050fd85b914e2d4dfb4db2df04245f90c3f716e70b"}
+  ],
+  "inputs_glob": "data/*_RIDE_result.mat",
+  "components": ["S", "C", "R"],
+  "component_fields": {"S": "stS", "C": "stC", "R": "stR"},
+  "channels": ["F3", "F4", "FC5", "FC3", "FC1", "FCz", "FC2", "FC4", "FC6", "C5", "C3", "C1", "Cz", "C2", "C4", "C6", "CP5", "CP3", "CP1", "CPz", "CP2", "CP4", "CP6", "P3", "Pz", "P4", "O1", "O2"],
+  "target_channel": "C3",
+  "trial_order": "stable behavioral RT ascending",
+  "processing": {"filter": null, "baseline": null, "resample": null, "smooth": null, "interpolation": "none", "decimation": null, "source_to_display": "volts * 1e6 = microvolts"},
+  "display_limit": "global 99.5th percentile absolute C3 amplitude",
+  "selection_metric": "max across components of component 99th percentile absolute C3 amplitude",
+  "frozen_decisions": {
+    "target_channel": "C3",
+    "trial_order": "stable behavioral RT ascending",
+    "retain_every_trial_and_sample": true,
+    "selection_metric": "max across components of component 99th percentile absolute C3 amplitude",
+    "display_limit": "global 99.5th percentile absolute C3 amplitude"
+  },
+  "compute_gates": {
+    "shape_and_finite_validation": true,
+    "time_zero_unique": true,
+    "rt_length_and_range_validation": true,
+    "stable_sort_bijection": true,
+    "no_decimation": true
+  },
+  "required_outputs": ["results/c3_all_recordings_heatmaps.png", "results/c3_mean_waveforms.png", "results/c3_metrics.csv", "results/summary.json"],
+  "interpretation": {
+    "mode": "selection-informed descriptive exploration",
+    "not_inferential": true,
+    "subject_condition_confound": "Only one far recording is available.",
+    "provenance_caveat": "MAT files lack embedded channel labels and unit metadata; identity and units come from the user's notebooks and explicit confirmation."
+  },
+  "family": {"family_id": null, "parent_analysis": null, "varies": []},
+  "instruments": [
+    {"stage": "mat_loader", "position": 0, "consumes": null, "name": "scipy.io.loadmat", "version": "runtime", "install_source": "requirements.txt", "parameters": {"squeeze_me": true, "struct_as_record": false}, "tier": "Required"},
+    {"stage": "mne_channel_extractor", "position": 1, "consumes": "mat_loader", "name": "mne.EpochsArray", "version": "runtime", "install_source": "requirements.txt", "parameters": {"sfreq_hz": 500, "channel": "C3", "decimation": null}, "tier": "Required"},
+    {"stage": "matplotlib_renderer", "position": 2, "consumes": "mne_channel_extractor", "name": "matplotlib", "version": "runtime", "install_source": "MNE dependency", "parameters": {"heatmap_interpolation": "none", "shared_percentile": 99.5}, "tier": "Required"}
+  ]
+}

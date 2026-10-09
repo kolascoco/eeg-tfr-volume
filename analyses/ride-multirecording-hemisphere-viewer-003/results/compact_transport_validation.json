@@ -1,0 +1,38 @@
+{
+  "validated_at": "2026-10-09T14:34:15+02:00",
+  "status": "PASS",
+  "assets": {
+    "S": {"path": "../../docs/ride-volume-S.i16.gz", "bytes": 32370614, "sha256": "482f7400c7009dcf8978231e11ed24e86ff9eab5d0b06cffc00f5ce8a21bd804"},
+    "R": {"path": "../../docs/ride-volume-R.i16.gz", "bytes": 32402319, "sha256": "fa930222804802f8189f3931f2780156a569897b9db3bb39e45f2405fa1c000a"}
+  },
+  "expanded_bytes": 89623184,
+  "shape_per_component": [457, 28, 1751],
+  "samples_per_component": 22405796,
+  "components": ["S", "R"],
+  "microvolts_per_count": 0.01,
+  "maximum_absolute_source_difference_microvolts": {
+    "S": 0.0050004018703475595,
+    "R": 0.0050004018703475595
+  },
+  "axes": {
+    "times_exact": true,
+    "response_times_exact": true,
+    "channels_exact": true,
+    "trial_decimation": false,
+    "time_decimation": false
+  },
+  "browser": {
+    "runtime": "Chrome via host-managed Playwright",
+    "decompression_stream_available": true,
+    "volume_loaded": true,
+    "both_canvases_nonblank": true,
+    "console_warnings": 0,
+    "console_errors": 0
+  },
+  "tests": {
+    "command": "PYTHONPATH=src MPLCONFIGDIR=/tmp/mpl-eeg python3 -m unittest discover -v tests",
+    "passed": 18,
+    "failed": 0,
+    "runtime_seconds": 2.667
+  }
+}

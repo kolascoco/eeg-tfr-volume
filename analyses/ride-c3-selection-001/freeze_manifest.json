@@ -1,0 +1,15 @@
+{
+  "analysis_id": "ride-c3-selection-001",
+  "specification_written_at": "2026-10-07T15:32:03+02:00",
+  "git_commit_at_specification": "4aa2a394f1b45e4d6b41a304a3b524b0bbce4f3f",
+  "branch": "main",
+  "frozen_files": [
+    {"path": "plan.md", "sha256_after_transparency_amendment": "c74834a6fd795454290ac493e224ef86a86fc1d1810f587d77dbac37e2b76e7b"},
+    {"path": "config.json", "sha256_after_transparency_amendment": "caf1d72fa0d8b9f7b470e96c1303d32cd172da30ab21838fe4a538ba302ae9d6"}
+  ],
+  "user_confirmation": "go",
+  "classification": "retrospective exploratory specification, not preregistration",
+  "audit_limit": "The user approved the plan in conversation before execution, but the untracked specification has no Git snapshot proving pre-outcome immutability.",
+  "amendment_scope": "Post-outcome edits only corrected provenance, schema, and retrospective-status disclosures; code, metrics, figures, and ranking were unchanged.",
+  "scientific_outcomes_seen_before_script_execution": false
+}

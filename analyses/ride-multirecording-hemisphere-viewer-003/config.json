@@ -1,0 +1,59 @@
+{
+  "analysis_id": "ride-multirecording-hemisphere-viewer-003",
+  "status": "PASS-WITH-RISKS",
+  "sources": [
+    {"path":"../../data/S02_far_RIDE_result.mat","sha256":"4afeb867014468ed3fc8e3b9640b90f2b1e2947c43a932189952edfd9f6d6a03","role":"RIDE single-trial source"},
+    {"path":"../../data/S04_far_RIDE_result.mat","sha256":"6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0","role":"RIDE single-trial source"},
+    {"path":"../../data/S07_far_RIDE_result.mat","sha256":"09423f5b3223c08ed6ce8532ff223b9b886e5bddfabe8ebeece0d86dab482300","role":"RIDE single-trial source"}
+  ],
+  "frozen_decisions": {
+    "recording_order": ["S02_far", "S04_far", "S07_far"],
+    "trial_key": ["recording_id", "original_1_based_trial_number"],
+    "components": ["S", "R"],
+    "filter": {"l_freq_hz":0.5,"h_freq_hz":20.0,"method":"iir","order":4,"phase":"zero","pad":"reflect_limited","per_recording":true},
+    "stack_axis": "trial",
+    "hemisphere_contrast": {"default":"left_minus_right","alternatives":["recorded","right_minus_left"],"midline":"excluded","pairs":[["F3","F4"],["FC5","FC6"],["FC3","FC4"],["FC1","FC2"],["C5","C6"],["C3","C4"],["C1","C2"],["CP5","CP6"],["CP3","CP4"],["CP1","CP2"],["P3","P4"],["O1","O2"]]},
+    "montage_highlight_amendment_2026_10_08": {"region_selection":"inclusive multi-select with empty selection rejected","selected_pool":"dim electrode markers","visible_slider_window":"strong electrode markers plus explicit labels","bilateral_mapping":"both raw electrodes for every visible homologous pair"},
+    "horizontal_controls_amendment_2026_10_08": {"viewport_order":"both component canvases before controls","controls_position":"below viewports","layout":"responsive horizontal card grid; single column on narrow screens","behavior_change":false},
+    "trial_window_amendment_2026_10_08": {"bounds":"inclusive rank start/end","default":[1,457],"ordering":"current RT-sorted or recording order","payload":"all 457 trials retained","single_trial":true,"consumers":["dense faces","dense interior","X-ray sampling","axis labels","response-time curtain"]},
+    "compact_transport_amendment_2026_10_09": {"components":["S","R"],"assets":"one gzip file per component, each below 50 MiB","omitted":["C","unused MATLAB fields"],"quantization_microvolts_per_count":0.01,"compression":"gzip","trial_decimation":false,"time_decimation":false,"manifest":"../../docs/ride-volume.json"},
+    "interpretation": "diagnostic visualization only"
+  },
+  "compute_gates": {
+    "three_source_contract_and_hashes": "required",
+    "per_recording_filter_validation": "required",
+    "stacked_trial_provenance_bijection": "required",
+    "external_payload_size_and_roundtrip": "required",
+    "hemisphere_subtraction_regression": "required",
+    "browser_real_data_check": "required",
+    "adversarial_review": "required"
+  },
+  "required_outputs": [
+    "../../docs/ride.html",
+    "../../docs/ride-volume-S.i16.gz",
+    "../../docs/ride-volume-R.i16.gz",
+    "../../docs/ride-volume.json",
+    "result_manifest.json",
+    "final_report.md",
+    "results/adversarial_review.md"
+  ],
+  "interpretation": {
+    "status": "diagnostic descriptive visualization",
+    "hemisphere_contrast_is_inferential": false,
+    "limits": [
+      "homologous scalp-channel subtraction is not source localization",
+      "stacking retains recording provenance but is not a grouped statistical model",
+      "finite-epoch zero-phase filtering can create boundary transients",
+      "X-ray coherent-voxel occupancy and connected components depend on visualization smoothing and threshold settings"
+    ]
+  },
+  "instruments": [
+    {"stage":"load","position":0,"consumes":null,"name":"scipy.io.loadmat plus RIDE collection validator","version":"SciPy 1.10.1","install_source":"requirements.txt","parameters":{"squeeze_me":true,"struct_as_record":false,"files":3},"tier":"Required"},
+    {"stage":"filter","position":1,"consumes":"load","name":"mne.filter.filter_data","version":"MNE-Python 1.6.1","install_source":"requirements.txt","parameters":{"l_freq_hz":0.5,"h_freq_hz":20.0,"method":"iir","iir_order":4,"phase":"zero","pad":"reflect_limited","scope":"each recording before concatenation"},"tier":"Required"},
+    {"stage":"stack","position":2,"consumes":"filter","name":"NumPy concatenate plus trial provenance builder","version":"NumPy 1.24.4","install_source":"requirements.txt","parameters":{"axis":"trial","recording_order":["S02_far","S04_far","S07_far"]},"tier":"Required"},
+    {"stage":"encode","position":3,"consumes":"stack","name":"NumPy signed fixed-point encoder plus Python gzip","version":"NumPy 1.24.4; Python standard library","install_source":"requirements.txt plus Python 3.8+","parameters":{"dtype":"int16_le","microvolts_per_count":0.01,"components":["S","R"],"compression":"gzip level 9","decimation":false},"tier":"Required"},
+    {"stage":"transform","position":4,"consumes":"encode","name":"Browser homologous-channel subtraction","version":"frozen by final source hash","install_source":"src/ride_viewer_template.html","parameters":{"default":"left_minus_right","pair_count":12,"midline":"excluded"},"tier":"Required"},
+    {"stage":"render","position":5,"consumes":"transform","name":"HTML Canvas 2D RIDE volume renderer","version":"frozen by final source hash","install_source":"src/ride_viewer_template.html","parameters":{"components":["S","R"],"linked_controls":true,"channel_scrolling":true,"montage_highlight":"selected pool dim; visible slider window strong with labels","region_selection":"inclusive multi-select; reject empty","validation_node":"v25.2.1","validation_browser":"Chrome 154.0.0.0 via Codex in-app browser","automation":"Codex host-managed Playwright API; package version not exposed"},"tier":"Required"}
+  ],
+  "family": {"family_id":"ride-single-trial-volume-viewer","parent_analysis":"ride-sr-smoothing-viewer-002","varies":["three-recording trial stack","external binary payload","split hemisphere montage","homologous left-right subtraction","post-hoc visible-pair montage highlighting and region-state repair","post-hoc responsive horizontal controls below viewports","post-hoc inclusive visible trial-rank window"]}
+}

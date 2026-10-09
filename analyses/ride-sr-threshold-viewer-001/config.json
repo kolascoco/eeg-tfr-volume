@@ -1,0 +1,111 @@
+{
+  "analysis_id": "ride-sr-threshold-viewer-001",
+  "status": "PASS",
+  "sources": [
+    {
+      "path": "../../data/S04_far_RIDE_result.mat",
+      "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0",
+      "role": "RIDE single-trial source"
+    }
+  ],
+  "frozen_decisions": {
+    "components": ["S", "R"],
+    "source_layout": "time × channel × trial",
+    "viewer_layout": "trial × channel × time",
+    "filter": {
+      "l_freq_hz": 0.5,
+      "h_freq_hz": 20.0,
+      "method": "iir",
+      "design_order": 4,
+      "phase": "zero",
+      "pad": "reflect_limited"
+    },
+    "payload": {
+      "dtype": "int16_le",
+      "microvolts_per_count": 0.01,
+      "source_decimation": null
+    },
+    "viewer": {
+      "layout": "S and R side by side",
+      "trial_bounds_adjustable": false,
+      "time_bounds_adjustable": true,
+      "channel_bounds_adjustable": true,
+      "time_stretch_adjustable": true,
+      "color_limit_adjustable": true,
+      "threshold_polarity": ["positive", "negative", "both"],
+      "threshold_render_grid_max_trial_channel_time": [36, 20, 64],
+      "threshold_voxel_budget_per_component": 2400,
+      "threshold_budget_selection": "largest absolute amplitudes",
+      "threshold_faces": "exposed faces only"
+    }
+  },
+  "compute_gates": {
+    "data_contract": "required",
+    "filter_validation": "required",
+    "payload_roundtrip": "required",
+    "browser_nonblank_and_controls": "required",
+    "adversarial_review": "required"
+  },
+  "required_outputs": [
+    "../../docs/ride.html",
+    "result_manifest.json",
+    "final_report.md",
+    "results/adversarial_review.md"
+  ],
+  "interpretation": {
+    "status": "descriptive visualization",
+    "threshold_is_inferential": false,
+    "limits": [
+      "channel labels originate from the owner's notebook rather than the MAT file",
+      "finite-epoch filtering can create boundary transients",
+      "browser drawing samples the native grid and may apply a disclosed voxel budget"
+    ]
+  },
+  "instruments": [
+    {
+      "stage": "load",
+      "position": 0,
+      "consumes": null,
+      "name": "scipy.io.loadmat plus RIDE contract validator",
+      "version": "SciPy 1.10.1",
+      "install_source": "requirements.txt",
+      "parameters": {"squeeze_me": true, "struct_as_record": false},
+      "tier": "Required"
+    },
+    {
+      "stage": "filter",
+      "position": 1,
+      "consumes": "load",
+      "name": "mne.filter.filter_data",
+      "version": "MNE-Python 1.6.1",
+      "install_source": "requirements.txt",
+      "parameters": {"l_freq_hz": 0.5, "h_freq_hz": 20.0, "method": "iir", "iir_order": 4, "phase": "zero", "pad": "reflect_limited"},
+      "tier": "Required"
+    },
+    {
+      "stage": "encode",
+      "position": 2,
+      "consumes": "filter",
+      "name": "NumPy signed fixed-point encoder",
+      "version": "NumPy 1.24.4",
+      "install_source": "requirements.txt",
+      "parameters": {"dtype": "int16_le", "microvolts_per_count": 0.01, "components": ["S", "R"]},
+      "tier": "Required"
+    },
+    {
+      "stage": "render",
+      "position": 3,
+      "consumes": "encode",
+      "name": "HTML Canvas 2D RIDE volume renderer",
+      "version": "repository source hash recorded in result_manifest.json",
+      "install_source": "src/ride_viewer_template.html",
+      "parameters": {"render_grid_max": [36, 20, 64], "voxel_budget_per_component": 2400, "draw_exposed_faces_only": true, "redraw_coalescing": "requestAnimationFrame"},
+      "tier": "Required"
+    }
+  ],
+  "family": {
+    "family_id": "ride-single-trial-volume-viewer",
+    "parent_analysis": "ride-s04-filtered-viewer-001",
+    "varies": ["published components", "payload encoding", "layout", "threshold-volume renderer", "controls"]
+  }
+}

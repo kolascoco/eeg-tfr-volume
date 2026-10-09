@@ -1,0 +1,16 @@
+{
+  "analysis_id": "ride-s04-filtered-viewer-001",
+  "status": "SUPERSEDED",
+  "superseded_by": "ride-multirecording-hemisphere-viewer-003",
+  "superseded_results": [
+    {"superseded_path": "../../docs/ride.html", "sha256": "7ea0dffec8a36b6c022f19b44ef2cd18d67627bd3b98b8fc0a75c140db0ac687", "bytes": 26905599},
+    {"superseded_path": "../../src/ride_volume.py", "sha256": "0d398ce7367a8c559a983c3fb9e983f1623925e4474833a521b4665c14df375a"},
+    {"superseded_path": "../../src/ride_viewer_template.html", "sha256": "2c0514af2130ca39e4fa3c7d40ff2f74dd3ead7905ec0da366662ada9143ee5a"},
+    {"superseded_path": "../../scripts/generate_ride_viewer.py", "sha256": "460bf416f5336a58a3da69b8e3c6ee454746107901f454cbac6136dddf441e6b"},
+    {"superseded_path": "../../tests/test_eeg_tfr_volume.py", "sha256": "12671c6e25e6de80b8e9ea7cb32a733c17c3997e8202276c13c7e40695c76d6c"},
+    {"superseded_path": "../../tests/test_ride_volume.py", "sha256": "c7d8cc7faa7c3dd8c436d7c8baa9a23b417eb2de59568758c2588f4b95b92f5e"},
+    {"superseded_path": "../../tests/test_ride_real_data.py", "sha256": "c69b96ddd6afeea483dc92f7049551b525c8b3d687dabdc8c5531fe0af400648"}
+  ],
+  "tests": {"command": "PYTHONPATH=src python3 -m unittest discover -s tests -v", "passed": 11, "failed": 0},
+  "browser_inspection": "PASS"
+}

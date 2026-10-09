@@ -1,0 +1,18 @@
+{
+  "analysis_id": "ride-trial-volume-001",
+  "created_at": "2026-10-07T15:08:00+02:00",
+  "files": {
+    "docs/ride.html": "a07c0e65dd715b899d2165370783727372909c0149dbc6e18fabf5dd72cb004a",
+    "final_report.md": "4dfd475a37807db95f058f3fa6debb694db63d0dd4c6e20ff74d97d0180875ad",
+    "results/validation_summary.json": "262c9d74c349e371a5419a28ee37ad75c1e2dee341d08df8cc8f3329cd0e5524",
+    "results/adversarial_review.md": "8df9c5f60158e0dd481a0dd1b7808979e6512ef312bce382d8e11aa4f789236c",
+    "gate_status.json": "ac699a63f7c22aac10a44550164a611d5bfe3ccd5d257270f8c3be74072d4e7c",
+    "log.md": "f3e202531931410e32816a995bd1b9dce68ce3708a8d80edaa80b508d0ae8a7f",
+    "freeze_manifest.json": "0a29baf9bbb879025268b92d08e704ed68c8c71b07a2bd9083923190c983fdc4",
+    "src/ride_volume.py": "2aab52f72bb71203cb8af7e6104204bd226492c13e42b5affa7b21a06d50cbb5",
+    "src/ride_viewer_template.html": "37ea3a3d1f27c4bc44049c409aa582afa8055e592b260ca3ea867dedbd6ad35d",
+    "scripts/generate_ride_viewer.py": "82cc1b7a91c8cbe9ad02e1fa62ffa1a0dc59b663da331ea410e70397b31be310",
+    "tests/test_ride_volume.py": "3d5bc14741fc59d4ce6510a2c74bccb520dd6ce2fd79fd10748f12683d291db7",
+    "tests/test_ride_real_data.py": "5dcf5a3dbebcd71aec8c631a66564907713f990d328d1df3be6156a05e877bb6"
+  }
+}

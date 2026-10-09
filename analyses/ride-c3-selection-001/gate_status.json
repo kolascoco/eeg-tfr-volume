@@ -1,0 +1,8 @@
+{
+  "shared_understanding": {"status": "PASS", "confirmed_at": "2026-10-07", "basis": "User approved the proposed channel order, full-resolution plots, RT sorting, shared scale, and descriptive metric with 'go'."},
+  "instrument_status": [
+    {"stage": "mat_loader", "status": "PASS", "input_ref": "input_audit.json", "validated_at": "2026-10-07T15:48:16.357+02:00", "runtime_s": 2.448816, "output_shape": "four recordings; each stS/stC/stR = 1751 x 28 x n_trials", "evidence": "Timed read-only revalidation loaded all four MAT files and verified finite, shape-consistent stS/stC/stR arrays plus RT lengths."},
+    {"stage": "mne_channel_extractor", "status": "PASS", "input_ref": "mat_loader@2026-10-07T15:48:16.357+02:00", "validated_at": "2026-10-07T15:48:16.905+02:00", "runtime_s": 0.547981, "output_shape": "12 arrays of n_trials x 1751", "evidence": "Timed read-only revalidation passed every trial, all 28 channels, and all 1751 samples into MNE 1.6.1 and extracted the user-directed C3 column without decimation."},
+    {"stage": "matplotlib_renderer", "status": "PASS", "input_ref": "mne_channel_extractor@2026-10-07T15:48:16.905+02:00", "validated_at": "2026-10-07T15:48:17.253+02:00", "runtime_s": 0.347427, "output_shape": "PNG 3060x2520 and PNG 2340x1800", "evidence": "Timed read-only post-render inspection decoded both saved PNGs, verified dimensions, and confirmed nonconstant RGB extrema; figures were also visually inspected."}
+  ]
+}

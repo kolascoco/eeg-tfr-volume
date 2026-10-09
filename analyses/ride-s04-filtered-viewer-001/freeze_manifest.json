@@ -1,0 +1,10 @@
+{
+  "analysis_id": "ride-s04-filtered-viewer-001",
+  "classification": "selection-informed descriptive presentation",
+  "user_confirmation": "Use S04_far and filter l_freq=0.5, h_freq=20 before presentation in the app.",
+  "files": [
+    {"path": "plan.md", "sha256": "befe5b721117aea29162b38a1d99cd5a4bcab63aed27b96df92df2f7d7805b62"},
+    {"path": "config.json", "sha256": "0dc8187187d09c9fd7845316d536b689fcbf3ac126dc7340a438dce82fd0154b"}
+  ],
+  "post_result_amendment": "Clarified design order 4 versus effective order 16 after adversarial review; scientific preprocessing and filtered arrays were unchanged."
+}

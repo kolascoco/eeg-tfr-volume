@@ -1,0 +1,88 @@
+{
+  "analysis_id": "ride-sr-smoothing-viewer-002",
+  "status": "PASS-WITH-RISKS",
+  "sources": [
+    {
+      "path": "../../data/S04_far_RIDE_result.mat",
+      "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0",
+      "role": "RIDE single-trial source"
+    }
+  ],
+  "frozen_decisions": {
+    "inherited": "ride-sr-threshold-viewer-001",
+    "smoothing": {
+      "scope": "browser visualization only",
+      "default_level": 0,
+      "minimum_level": 0,
+      "maximum_level": 8,
+      "time_radius_ms_per_level": 10,
+      "trial_radius_per_level": 1,
+      "order": ["centered time rolling mean", "centered trial rolling mean"],
+      "trial_axis": "currently displayed trial order",
+      "edge_policy": "shrink window",
+      "channel_mixing": false
+    },
+    "xray_structure": {
+      "amendment": "post-hoc exploratory tuning requested 2026-10-07",
+      "scope": "browser visualization only; independent from dense-view smoothing",
+      "source": "unsmoothed embedded signed-int16 values decoded to microvolts",
+      "default_level": 3,
+      "levels": [0, 1, 2, 3],
+      "level_3_passes": ["time", "displayed trial", "ordered channel", "time", "displayed trial"],
+      "kernel": [1, 2, 1],
+      "edge_policy": "renormalize available neighbors",
+      "threshold_default_percent_of_color_limit": 30,
+      "polarity_processing": "positive and negative masks processed separately",
+      "connectivity": 6,
+      "minimum_component_voxels_by_level": [1, 3, 8, 8],
+      "render_grid_max": [36, 20, 64],
+      "voxel_budget_per_component": 2400
+    },
+    "channel_montage": {
+      "amendment": "post-hoc interface extension requested 2026-10-07",
+      "scope": "browser visualization only; shared by S and R cubes",
+      "combination": "intersection of selected sector and hemisphere sets",
+      "sectors": {
+        "posterior": ["P3", "Pz", "P4", "O1", "O2"],
+        "central": ["FC5", "FC3", "FC1", "FCz", "FC2", "FC4", "FC6", "C5", "C3", "C1", "Cz", "C2", "C4", "C6", "CP5", "CP3", "CP1", "CPz", "CP2", "CP4", "CP6"],
+        "frontal": ["F3", "F4"]
+      },
+      "hemisphere_rule": {"left": "odd numeric suffix", "midline": "z suffix", "right": "even numeric suffix"},
+      "empty_selection": "reject and preserve last nonempty selection",
+      "default": "all 28 channels",
+      "cube_channel_order": "original displayed electrode-list order",
+      "visible_window": "inclusive start/end indices within the filtered channel pool",
+      "window_crossing": "moving one endpoint past the other collapses both to the moved endpoint",
+      "selection_change": "reset visible window to the full new filtered pool"
+    }
+  },
+  "compute_gates": {
+    "reference_algorithm_tests": "required",
+    "off_state_identity": "required",
+    "browser_real_data_check": "required",
+    "adversarial_review": "required"
+  },
+  "required_outputs": [
+    "../../docs/ride.html",
+    "result_manifest.json",
+    "final_report.md",
+    "results/adversarial_review.md"
+  ],
+  "interpretation": {
+    "status": "diagnostic presentation control",
+    "smoothing_is_preprocessing": false,
+    "limits": ["can merge, widen, or attenuate visible structures", "must be compared with level 0"]
+  },
+  "instruments": [
+    {"stage":"load","position":0,"consumes":null,"name":"scipy.io.loadmat plus RIDE contract validator","version":"SciPy 1.10.1","install_source":"requirements.txt","parameters":{"squeeze_me":true,"struct_as_record":false},"tier":"Required"},
+    {"stage":"filter","position":1,"consumes":"load","name":"mne.filter.filter_data","version":"MNE-Python 1.6.1","install_source":"requirements.txt","parameters":{"l_freq_hz":0.5,"h_freq_hz":20.0,"method":"iir","iir_order":4,"phase":"zero","pad":"reflect_limited"},"tier":"Required"},
+    {"stage":"encode","position":2,"consumes":"filter","name":"NumPy signed fixed-point encoder","version":"NumPy 1.24.4","install_source":"requirements.txt","parameters":{"dtype":"int16_le","microvolts_per_count":0.01,"components":["S","R"]},"tier":"Required"},
+    {"stage":"smooth","position":3,"consumes":"encode","name":"Browser display transforms","version":"frozen by final source hash","install_source":"src/ride_viewer_template.html","parameters":{"dense":{"levels":[0,8],"time_radius_ms_per_level":10,"trial_radius_per_level":1,"edge_policy":"shrink","trial_axis":"displayed order"},"xray":{"levels":[0,3],"default_level":3,"kernel":[1,2,1],"level_3_passes":["time","displayed trial","ordered channel","time","displayed trial"],"source":"unsmoothed embedded values","connectivity":6,"minimum_component_voxels":8}},"tier":"Required"},
+    {"stage":"render","position":4,"consumes":"smooth","name":"HTML Canvas 2D RIDE volume renderer","version":"frozen by final source hash","install_source":"src/ride_viewer_template.html","parameters":{"render_grid_max":[36,20,64],"voxel_budget_per_component":2400,"draw_exposed_faces_only":true,"xray_default_threshold_percent":30,"polarity_masks":"separate","channel_selector":{"sectors":["posterior","central","frontal"],"hemispheres":["left","midline","right"],"combination":"intersection","empty_selection":"reject","visible_window":"inclusive start/end within filtered pool","window_reset":"full range after montage change"}},"tier":"Required"}
+  ],
+  "family": {
+    "family_id": "ride-single-trial-volume-viewer",
+    "parent_analysis": "ride-sr-threshold-viewer-001",
+    "varies": ["optional visualization-only separable time/trial smoothing", "post-hoc X-ray coherence smoothing, component cleanup, and default threshold", "post-hoc scalp-sector and hemisphere channel filtering interface", "post-hoc visible channel-range scrolling within the filtered pool"]
+  }
+}

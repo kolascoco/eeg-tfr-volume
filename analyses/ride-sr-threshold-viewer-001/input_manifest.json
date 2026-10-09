@@ -1,0 +1,10 @@
+{
+  "source": "data/S04_far_RIDE_result.mat",
+  "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0",
+  "source_shape_time_channels_trials": [1751, 28, 137],
+  "viewer_shape_trials_channels_time": [137, 28, 1751],
+  "time_ms": [-1500, 2000],
+  "response_time_ms": [492, 1000],
+  "amplitude_units": "microvolts after source volts × 1e6",
+  "units_status": "confirmed by data owner"
+}

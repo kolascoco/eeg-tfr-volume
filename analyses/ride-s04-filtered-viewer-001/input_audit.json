@@ -1,0 +1,9 @@
+{
+  "status": "PASS-WITH-LIMITATIONS",
+  "input": {"path": "data/S04_far_RIDE_result.mat", "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0", "shape_time_channels_trials": [1751, 28, 137]},
+  "time": {"start_ms": -1500.0, "stop_ms": 2000.0, "step_ms": 2.0, "sfreq_hz": 500.0, "zero_index": 750},
+  "response_time": {"field": "results.latency0[2]", "count": 137, "minimum_ms": 492.0, "maximum_ms": 1000.0},
+  "channel_provenance": {"source": "Far_Close-MI_MA_ME.ipynb cell 111, directed by data owner", "c3_zero_based_index": 10, "embedded_in_mat": false},
+  "unit_provenance": {"source": "user notebooks use MNE-domain values and multiply by 1e6; data owner confirmed µV display", "embedded_in_mat": false},
+  "limitations": ["Channel labels and units are external provenance.", "Trial identity is inherited by array index."]
+}

@@ -1,0 +1,14 @@
+{
+  "analysis_id": "ride-trial-volume-001",
+  "frozen_at": "2026-10-07T14:36:00+02:00",
+  "config_sha256": "56ae9c1ad0b355c136927f2640bedd0f7f33dfc24a059cee4cf5d6f337512b8f",
+  "input_sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a",
+  "post_hoc_amendments": [
+    {
+      "date": "2026-10-07",
+      "topic": "renderer coverage",
+      "reason": "Implementation audit showed that the original native-voxel wording did not disclose deterministic Canvas decimation.",
+      "effect": "No data processing changed; UI and plan now disclose native-sample coverage and exploratory limits."
+    }
+  ]
+}

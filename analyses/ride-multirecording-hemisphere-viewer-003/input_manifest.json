@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {"path":"../../data/S02_far_RIDE_result.mat","sha256":"4afeb867014468ed3fc8e3b9640b90f2b1e2947c43a932189952edfd9f6d6a03","bytes":171641383,"recording_id":"S02_far","trials":149},
+    {"path":"../../data/S04_far_RIDE_result.mat","sha256":"6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0","bytes":158104306,"recording_id":"S04_far","trials":137},
+    {"path":"../../data/S07_far_RIDE_result.mat","sha256":"09423f5b3223c08ed6ce8532ff223b9b886e5bddfabe8ebeece0d86dab482300","bytes":196573226,"recording_id":"S07_far","trials":171}
+  ],
+  "total_trials": 457,
+  "channels": 28,
+  "time_samples": 1751,
+  "epoch_ms": [-1500.0, 2000.0],
+  "step_ms": 2.0,
+  "components_available": ["stS", "stC", "stR"],
+  "components_published": ["stS", "stR"]
+}

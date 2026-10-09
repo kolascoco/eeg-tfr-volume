@@ -1,0 +1,39 @@
+{
+  "analysis_id": "ride-c3-selection-001",
+  "audited_at": "2026-10-07T15:35:00+02:00",
+  "data_contract": {
+    "mat_orientation": "time x channel x trial",
+    "mne_orientation": "trial x channel x time",
+    "sample_interval_ms": 2.0,
+    "sfreq_hz": 500.0,
+    "epoch_ms": [-1500.0, 2000.0],
+    "n_times": 1751,
+    "n_channels": 28,
+    "units_in_file": "V by MNE/notebook convention; not embedded in MAT metadata",
+    "display_units": "µV",
+    "rt_source": "results.latency0[2]",
+    "rt_units": "ms"
+  },
+  "channel_provenance": {
+    "supplied_notebooks": "Near_Far_Ride_multivariate pattern analysis.ipynb cell 104 constructs MNE EpochsArray objects from d['stS'].T/d['stC'].T/d['stR'].T with raw_eps.ch_names; cells 29, 101, and 159 select C3 by name. The MAT files do not serialize these names.",
+    "resolved_from": "/Users/nikolaj_syrov/Documents/Python_proj/SK/VMT_rTMS/Far_Close-MI_MA_ME.ipynb cell 111 explicit good_order; the user instructed this analysis to use the electrodes from these notebooks.",
+    "channels": ["F3", "F4", "FC5", "FC3", "FC1", "FCz", "FC2", "FC4", "FC6", "C5", "C3", "C1", "Cz", "C2", "C4", "C6", "CP5", "CP3", "CP1", "CPz", "CP2", "CP4", "CP6", "P3", "Pz", "P4", "O1", "O2"],
+    "c3_zero_based_index": 10
+  },
+  "unit_provenance": {
+    "notebook_evidence": "Near_Far_Ride_Results.ipynb cells 16 and 18 and Near_Far_Ride_multivariate pattern analysis.ipynb cells 34 and 114 multiply MNE-domain EEG signals by 1e6 for display/analysis.",
+    "user_confirmation": "The user explicitly confirmed that the displayed unit µV is correct.",
+    "limitation": "The MAT files have no embedded unit field; unit identity is external provenance rather than self-describing metadata."
+  },
+  "recordings": [
+    {"name": "S01_near", "sha256": "ab02054d22adb122ae2d846804cc9e2ea8fded018bdfdab7a01538d650f1e8fc", "shape": [1751, 28, 140]},
+    {"name": "S04_far", "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0", "shape": [1751, 28, 137]},
+    {"name": "S14_near", "sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a", "shape": [1751, 28, 147]},
+    {"name": "S17_near", "sha256": "cebed216caba10785ffd5f0349ffdbd5e78437ec88bb1ac11419e9e137d7eee6", "shape": [1751, 28, 162]}
+  ],
+  "source_notebooks": [
+    {"name": "Near_Far_Ride_multivariate pattern analysis.ipynb", "sha256": "de85394132e61b9b7a8feb8ac1ebbb1b9d50ef54d99a28d306fb530bf7550ce0"},
+    {"name": "Near_Far_Ride_Results.ipynb", "sha256": "e369fe8462d7eea6c92eeacd09b733302935bf26da410600b1bb1bb61e8dca3e"},
+    {"name": "Far_Close-MI_MA_ME.ipynb", "sha256": "25b6d94ef89ceff0f008be050fd85b914e2d4dfb4db2df04245f90c3f716e70b"}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "audit_date": "2026-10-07",
+  "input": {
+    "path": "data/S14_near_RIDE_result.mat",
+    "bytes": 169461081,
+    "sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a",
+    "format": "MATLAB v5"
+  },
+  "shape_time_channels_trials": [1751, 28, 147],
+  "time": {"start_ms": -1500, "stop_ms": 2000, "step_ms": 2, "status": "inferred"},
+  "response_time": {"field": "results.latency0[2]", "n": 147, "min_ms": 306, "max_ms": 860, "missing": 0},
+  "components": {"S": "results.stS", "C": "results.stC", "R": "results.stR"},
+  "channel_labels": {"status": "FAIL", "reason": "absent; published 30-electrode montage cannot identify 28 exported columns"},
+  "amplitude_units": {"status": "PASS", "source": "volts", "display": "microvolts", "basis": "confirmed by data owner 2026-10-07"},
+  "overall": "PASS-WITH-RISKS-FOR-DIAGNOSTIC-VISUALIZATION"
+}

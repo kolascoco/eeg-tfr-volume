@@ -1,0 +1,9 @@
+{
+  "source": "data/S04_far_RIDE_result.mat",
+  "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0",
+  "viewer_shape_trials_channels_time": [137, 28, 1751],
+  "time_ms": [-1500, 2000],
+  "time_step_ms": 2,
+  "amplitude_units": "microvolts in browser payload",
+  "payload_changed": false
+}

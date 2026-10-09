@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-10-08T23:19:20+02:00",
+  "url": "http://127.0.0.1:8766/ride.html",
+  "browser_runtime": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "canvas_runtime": "CanvasRenderingContext2D",
+  "automation": "Codex host-managed Playwright API",
+  "automation_package_version": null,
+  "automation_version_note": "The host API does not expose its Playwright package version; no version was inferred.",
+  "node_version": "v25.2.1",
+  "summary": "S02 + S04 + S07 far-condition stack · all 457 trials fixed · 28 recorded channels / 12 homologous pairs · 1751 samples · 2 ms/sample",
+  "viewport_css_geometry": {"browser_width":774,"browser_height":757,"boxes_top":101,"boxes_bottom":732,"boxes_width":742},
+  "controls_css_geometry": {"panel_top":748,"panel_width":774,"below_viewports":true,"columns":2,"card_width":366},
+  "interaction_checks": [
+    "default left-minus-right representation shows all 12 homologous pairs",
+    "central-only group selection yields the expected nine homologous pairs",
+    "a C3-C4-only slider window strongly highlights and labels exactly C3 and C4 while the rest of the selected central pool remains dim teal",
+    "attempting to deselect the final region preserves the last valid non-empty state",
+    "switching to right-minus-left preserves the central region pool, resets the visible range, and reverses pair labels",
+    "a C4-C3-only window still highlights and labels exactly C3 and C4",
+    "both component canvases remain visible before all control elements",
+    "every selector, slider, montage control, checkbox, and orientation button is inside the below-viewport responsive card grid",
+    "threshold and dense mode cards switch visibility correctly after relocation",
+    "at 774 px browser width, control cards form two horizontal columns and the notes card spans the full width",
+    "trial controls initialize to visible ranks 1 through 457 while all 457 trials remain loaded",
+    "setting zero-based slider values 100 through 220 updates visible labels to ranks 101 through 221 and changes X-ray occupancy",
+    "moving trial start past the end enforces a valid single-trial window at rank 301",
+    "switching to recording order preserves the rank-301 single-trial window",
+    "restoring RT order and slider values 0 through 456 restores visible ranks 1 through 457",
+    "both component canvases remain nonblank after trial-window changes"
+  ],
+  "warnings_and_errors_after_final_reload": [],
+  "status": "PASS"
+}

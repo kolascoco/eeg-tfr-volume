@@ -1,0 +1,42 @@
+{
+  "common_understanding": "PASS",
+  "data_contract": "PASS",
+  "implementation_tests": "PASS",
+  "browser_validation": "PASS",
+  "adversarial_review": "PASS-WITH-RISKS",
+  "release": "PASS-WITH-RISKS",
+  "instrument_status": [
+    {
+      "stage": "load",
+      "status": "PASS",
+      "validated_at": "2026-10-07T16:57:18+02:00",
+      "runtime_s": 1.076,
+      "output_shape": "S/C/R each 137 trials × 28 channels × 1751 times; finite; time −1500..2000 ms; RT 492..1000 ms",
+      "input_ref": "input_manifest.json source sha256 6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0"
+    },
+    {
+      "stage": "filter",
+      "status": "PASS",
+      "validated_at": "2026-10-07T16:57:22+02:00",
+      "runtime_s": 3.792,
+      "output_shape": "S/C/R each 137 × 28 × 1751 float32 volts; finite and nonconstant; MNE 0.5–20 Hz",
+      "input_ref": "load at 2026-10-07T16:57:18+02:00"
+    },
+    {
+      "stage": "encode",
+      "status": "PASS",
+      "validated_at": "2026-10-07T16:57:23+02:00",
+      "runtime_s": 0.237,
+      "output_shape": "S/R each 137 × 28 × 1751 int16_le; 0.01 µV/count; maximum roundtrip error ≤0.0051 µV; no clipping",
+      "input_ref": "filter at 2026-10-07T16:57:22+02:00"
+    },
+    {
+      "stage": "render",
+      "status": "PASS",
+      "validated_at": "2026-10-07T16:57:24+02:00",
+      "runtime_s": 0.843,
+      "output_shape": "two nonblank linked Canvas volumes; threshold/dense switching and time/channel/polarity controls responsive; no browser warnings/errors",
+      "input_ref": "encode at 2026-10-07T16:57:23+02:00"
+    }
+  ]
+}

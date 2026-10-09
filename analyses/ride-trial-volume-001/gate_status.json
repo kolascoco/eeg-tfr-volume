@@ -1,0 +1,9 @@
+{
+  "shared_understanding": {"status": "PASS", "confirmed_at": "2026-10-07", "basis": "User requested three separately named S, C, and R volumes and supplied publication references."},
+  "channel_identity": {"status": "FAIL", "mitigation": "Visible Ch01..Ch28 placeholders; no anatomical claims."},
+  "instrument_status": [
+    {"stage": "mat_loader", "status": "PASS", "validated_at": "2026-10-07T15:06:36+02:00", "runtime_s": 1.165514, "input_ref": "input_audit.json", "output_shape": [147, 28, 1751], "checks": ["SHA-256 match", "finite S/C/R", "time axis", "RT alignment", "component extrema"]},
+    {"stage": "payload_encoder", "status": "PASS", "validated_at": "2026-10-07T15:06:37+02:00", "runtime_s": 0.308607, "input_ref": "mat_loader", "output_shape": [147, 28, 1751], "checks": ["shared symmetric scale", "256 encoded levels in each component", "round-trip HTML embedding"]},
+    {"stage": "canvas_renderer", "status": "PASS", "validated_at": "2026-10-07T15:07:02+02:00", "runtime_s": 1.55, "input_ref": "payload_encoder", "output_shape": [3], "checks": ["JavaScript parse", "three nonblank canvases", "plane control", "trial-order control", "all RT curtain segments", "unit disclosure", "sampling disclosure", "saturation disclosure", "zero browser console errors"]}
+  ]
+}

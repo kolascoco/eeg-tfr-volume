@@ -1,0 +1,15 @@
+{
+  "shared_understanding": "PASS",
+  "implementation_tests": "PASS",
+  "browser_validation": "PASS",
+  "adversarial_review": "PASS-WITH-RISKS",
+  "release": "READY_FOR_USER_COMMIT",
+  "instrument_status": [
+    {"stage":"load","status":"PASS","input_ref":"input_manifest.json three-source hashes","output_shape":[[149,28,1751],[137,28,1751],[171,28,1751]],"runtime_s":3.353189,"validated_at":"2026-10-08T02:10:40+02:00"},
+    {"stage":"filter","status":"PASS","input_ref":"load","output_shape":[[149,28,1751],[137,28,1751],[171,28,1751]],"runtime_s":10.952014,"validated_at":"2026-10-08T02:10:42+02:00"},
+    {"stage":"stack","status":"PASS","input_ref":"filter","output_shape":[457,28,1751],"runtime_s":0.087563,"unique_trial_keys":457,"validated_at":"2026-10-08T02:10:43+02:00"},
+    {"stage":"encode","status":"PASS","input_ref":"stack","output_shape":[2,457,28,1751],"runtime_s":16.0,"assets":{"S":{"bytes":32370614,"expanded_bytes":44811592,"sha256":"482f7400c7009dcf8978231e11ed24e86ff9eab5d0b06cffc00f5ce8a21bd804"},"R":{"bytes":32402319,"expanded_bytes":44811592,"sha256":"fa930222804802f8189f3931f2780156a569897b9db3bb39e45f2405fa1c000a"}},"validated_at":"2026-10-09T14:32:00+02:00"},
+    {"stage":"transform","status":"PASS","input_ref":"encode validated 2026-10-09T14:32:00+02:00","output_shape":[457,12,1751],"runtime_s":2.667,"pair_count":12,"regressions":["tests/hemisphere_regression.js","tests/montage_interaction_regression.js","results/xray_measurement.js"],"validated_at":"2026-10-09T14:33:30+02:00"},
+    {"stage":"render","status":"PASS","input_ref":"transform validated 2026-10-09T14:33:30+02:00","output_shape":[2,457,12,1751],"runtime_s":10.4,"browser_evidence":"results/compact_transport_validation.json","console_errors":0,"gzip_decompression_stream":true,"decoded_samples_per_component":22405796,"validated_at":"2026-10-09T14:34:15+02:00"}
+  ]
+}

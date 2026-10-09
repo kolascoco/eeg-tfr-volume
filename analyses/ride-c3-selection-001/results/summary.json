@@ -1,0 +1,77 @@
+{
+  "created_at": "2026-10-07T15:33:22+0200",
+  "software": {
+    "python": "3.8.1",
+    "numpy": "1.24.4",
+    "scipy": "1.10.1",
+    "mne": "1.6.1",
+    "matplotlib": "3.7.5"
+  },
+  "channel": "C3",
+  "channel_index_zero_based": 10,
+  "shared_limit_uv": [
+    -18.48735990290543,
+    18.48735990290543
+  ],
+  "ranking": [
+    {
+      "recording": "S14_near",
+      "score_uv": 18.917873475707673
+    },
+    {
+      "recording": "S17_near",
+      "score_uv": 16.618754672567153
+    },
+    {
+      "recording": "S04_far",
+      "score_uv": 13.117773584427658
+    },
+    {
+      "recording": "S01_near",
+      "score_uv": 11.26429518696949
+    }
+  ],
+  "inputs": [
+    {
+      "name": "S01_near",
+      "sha256": "ab02054d22adb122ae2d846804cc9e2ea8fded018bdfdab7a01538d650f1e8fc",
+      "shape_time_channels_trials": [
+        1751,
+        28,
+        140
+      ],
+      "runtime_s": 1.498222833
+    },
+    {
+      "name": "S04_far",
+      "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0",
+      "shape_time_channels_trials": [
+        1751,
+        28,
+        137
+      ],
+      "runtime_s": 0.9623082909999998
+    },
+    {
+      "name": "S14_near",
+      "sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a",
+      "shape_time_channels_trials": [
+        1751,
+        28,
+        147
+      ],
+      "runtime_s": 1.0604420410000004
+    },
+    {
+      "name": "S17_near",
+      "sha256": "cebed216caba10785ffd5f0349ffdbd5e78437ec88bb1ac11419e9e137d7eee6",
+      "shape_time_channels_trials": [
+        1751,
+        28,
+        162
+      ],
+      "runtime_s": 1.1886667909999993
+    }
+  ],
+  "processing": "All trials and all 1751 samples; no filtering, baseline, resampling, smoothing, interpolation, or decimation."
+}

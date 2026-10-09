@@ -1,0 +1,9 @@
+{
+  "shared_understanding": {"status": "PASS", "basis": "The data owner explicitly selected S04_far and requested MNE l_freq=0.5, h_freq=20 filtering for the app."},
+  "instrument_status": [
+    {"stage": "mat_loader", "status": "PASS", "input_ref": "input_audit.json", "validated_at": "2026-10-07T16:29:19.878+02:00", "runtime_s": 0.613170, "output_shape": "S/C/R each 137 x 28 x 1751 float32", "evidence": "Real S04 MAT arrays loaded, transposed, finite, and shape-consistent."},
+    {"stage": "mne_bandpass", "status": "PASS", "input_ref": "mat_loader@2026-10-07T16:29:19.878+02:00", "validated_at": "2026-10-07T16:29:23.538+02:00", "runtime_s": 3.659858, "output_shape": "S/C/R each 137 x 28 x 1751 float32, finite", "evidence": "Production-parameter MNE filter preserved shape and finiteness; design order 4/effective order 16 and edge risk are disclosed."},
+    {"stage": "payload_encoder", "status": "PASS", "input_ref": "mne_bandpass@2026-10-07T16:29:23.538+02:00", "validated_at": "2026-10-07T16:29:23.820+02:00", "runtime_s": 0.282658, "output_shape": "three uint8 payloads, each 137 x 28 x 1751; symmetric limit ±15.8588669365 µV", "evidence": "Fresh encoding exactly matched all three base64 payloads embedded in docs/ride.html."},
+    {"stage": "canvas_renderer", "status": "PASS", "input_ref": "payload_encoder@2026-10-07T16:29:23.820+02:00", "validated_at": "2026-10-07T16:29:24.331+02:00", "runtime_s": 0.510098, "output_shape": "26,905,599-byte self-contained HTML with three canvases", "evidence": "HTML parsed, embedded S04/filter/channel provenance matched, and visible boundary-transient disclosure was verified."}
+  ]
+}

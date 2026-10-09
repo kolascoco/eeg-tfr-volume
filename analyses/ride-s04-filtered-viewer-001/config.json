@@ -1,0 +1,19 @@
+{
+  "analysis_id": "ride-s04-filtered-viewer-001",
+  "status": "frozen",
+  "sources": [
+    {"path": "../../data/S04_far_RIDE_result.mat", "sha256": "6bcfedd8b2b2b2960d1a088aa842049fa02c1d5fbfce397ac7299145ba2bf6d0"},
+    {"path": "/Users/nikolaj_syrov/Documents/Python_proj/SK/VMT_rTMS/Far_Close-MI_MA_ME.ipynb", "sha256": "25b6d94ef89ceff0f008be050fd85b914e2d4dfb4db2df04245f90c3f716e70b"}
+  ],
+  "frozen_decisions": {"recording": "S04_far", "l_freq_hz": 0.5, "h_freq_hz": 20.0, "method": "iir", "phase": "zero", "iir_order": 4, "iir_type": "butter", "iir_output": "sos", "pad": "reflect_limited", "baseline": null, "resample": null, "source_decimation": null},
+  "compute_gates": {"shape_finite_time_rt": true, "filter_shape_and_finite": true, "frequency_response_control": true, "payload_and_browser_validation": true},
+  "required_outputs": ["../../docs/ride.html"],
+  "interpretation": {"mode": "selection-informed descriptive presentation", "not_inferential": true, "edge_risk": "Zero-phase filtering of finite epochs can create boundary transients."},
+  "instruments": [
+    {"stage": "mat_loader", "position": 0, "consumes": null, "name": "scipy.io.loadmat", "version": "1.10.1", "install_source": "requirements.txt", "parameters": {"squeeze_me": true, "struct_as_record": false}, "tier": "Required"},
+    {"stage": "mne_bandpass", "position": 1, "consumes": "mat_loader", "name": "mne.filter.filter_data", "version": "1.6.1", "install_source": "requirements.txt", "parameters": {"sfreq_hz": 500.0, "l_freq_hz": 0.5, "h_freq_hz": 20.0, "method": "iir", "phase": "zero", "iir_design_order": 4, "effective_order": 16, "ftype": "butter", "output": "sos", "pad": "reflect_limited"}, "tier": "Required"},
+    {"stage": "payload_encoder", "position": 2, "consumes": "mne_bandpass", "name": "ride_volume.encode_components", "version": "repository", "install_source": "local", "parameters": {"percentile": 99.5, "dtype": "uint8"}, "tier": "Required"},
+    {"stage": "canvas_renderer", "position": 3, "consumes": "payload_encoder", "name": "ride_viewer_template.html", "version": "repository", "install_source": "local", "parameters": {"boxes": 3, "interpolation": "none"}, "tier": "Required"}
+  ],
+  "family": {"family_id": "ride-trial-volume", "parent_analysis": "ride-trial-volume-001", "varies": ["input_recording", "bandpass_filter", "channel_labels"]}
+}

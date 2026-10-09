@@ -1,0 +1,33 @@
+{
+  "analysis_id": "ride-trial-volume-001",
+  "status": "frozen",
+  "frozen_at": "2026-10-07T14:36:00+02:00",
+  "purpose": "descriptive interactive visualization",
+  "input": {
+    "path": "data/S14_near_RIDE_result.mat",
+    "sha256": "a25732b8159eaf2c6e4508be10d5bb49e02881ce4a932fe9ca371f3a7439fb5a"
+  },
+  "components": [
+    {"key": "S", "field": "stS", "title": "Stimulus-locked component cluster (S component)"},
+    {"key": "C", "field": "stC", "title": "Non-marker-locked component cluster (C component)"},
+    {"key": "R", "field": "stR", "title": "Response-locked component cluster (R component)"}
+  ],
+  "axes": ["trial", "channel", "stimulus_relative_time_ms"],
+  "trial_sort_default": "behavioral_response_time_ascending",
+  "response_time_field": "results.latency0[2]",
+  "processing": {
+    "filter": null,
+    "baseline": null,
+    "resample": null,
+    "interpolation": "none",
+    "display_quantization": "shared symmetric uint8",
+    "display_limit": "max per-component 99.5th percentile absolute amplitude"
+  },
+  "channel_labels": {"source": "placeholder", "values": "Ch01..Ch28", "warning_required": true},
+  "family": {"family_id": null, "parent_analysis": null, "varies": null},
+  "instruments": [
+    {"stage": "mat_loader", "position": 0, "consumes": null, "name": "scipy.io.loadmat", "version": "runtime", "install_source": "requirements.txt", "parameters": {"squeeze_me": true, "struct_as_record": false}, "tier": "Required"},
+    {"stage": "payload_encoder", "position": 1, "consumes": "mat_loader", "name": "ride_volume.py", "version": "repository", "install_source": "local", "parameters": {"quantile": 99.5, "dtype": "uint8"}, "tier": "Required"},
+    {"stage": "canvas_renderer", "position": 2, "consumes": "payload_encoder", "name": "ride_viewer_template.html", "version": "repository", "install_source": "local", "parameters": {"boxes": 3, "interpolation": "none"}, "tier": "Required"}
+  ]
+}
