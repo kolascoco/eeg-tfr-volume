@@ -8,20 +8,20 @@
     {"path":"../../data/S07_far_RIDE_result.mat","sha256":"09423f5b3223c08ed6ce8532ff223b9b886e5bddfabe8ebeece0d86dab482300","trials":171}
   ],
   "outputs": [
-    {"path":"../../docs/ride.html","bytes":75349,"sha256":"cb74cc9d528138994679cea87972ceaec1e16424e0090f51cae44a8eca1f6727"},
+    {"path":"../../docs/ride.html","bytes":75883,"sha256":"b5f03904143cd40f0e3009c01ffc4fc8308a56750675e4d0fcef8fb38dd90d69"},
     {"path":"../../docs/ride-volume-S.i16.gz","bytes":32370614,"sha256":"482f7400c7009dcf8978231e11ed24e86ff9eab5d0b06cffc00f5ce8a21bd804","expanded_bytes":44811592,"layout":"gzip-compressed S; 457 x 28 x 1751; signed int16 little-endian; 0.01 microvolts/count"},
     {"path":"../../docs/ride-volume-R.i16.gz","bytes":32402319,"sha256":"fa930222804802f8189f3931f2780156a569897b9db3bb39e45f2405fa1c000a","expanded_bytes":44811592,"layout":"gzip-compressed R; 457 x 28 x 1751; signed int16 little-endian; 0.01 microvolts/count"},
-    {"path":"../../docs/ride-volume.json","bytes":47616,"sha256":"e3baad51f5e611114ed4c21c9292353010b478d2f96546b5eb655a5873800c75","role":"compact data contract and provenance manifest"}
+    {"path":"../../docs/ride-volume.json","bytes":47612,"sha256":"525ea4687020a5a67f19e40cc619dd31a498553861639aa0df1871c816345607","role":"compact data contract and provenance manifest"}
   ],
   "implementation": [
     {"path":"../../src/ride_volume.py","sha256":"98de9654d0f65e026ac9683278bc611d02f5c46abf4f09cf72a53c946298e08e"},
-    {"path":"../../src/ride_viewer_template.html","sha256":"20fc0140866a09390197a55181c95fb112c274c4e935c676951fc1bf872e15a3"},
+    {"path":"../../src/ride_viewer_template.html","sha256":"12ddab04b9fee7a61ef761e8f90253ae976833d39ebd1107a578b18291fbcd94"},
     {"path":"../../scripts/generate_ride_viewer.py","sha256":"1648e1b77a0c4338c80d00e993d6d4510f9d51641adb14224998130011863524"},
     {"path":"../../tests/hemisphere_regression.js","sha256":"6f9fd81038b3c22b9dc83a42e9a02e410aac83a9d758a3c989d62911ab19c4de"},
     {"path":"../../tests/channel_window_regression.js","sha256":"0131070d19c42f070d04b56a6709c47f41ad7216afd9656e4ed20eecf5c1c05e"},
     {"path":"../../tests/montage_interaction_regression.js","sha256":"401a41f4c6217a3bc11ee3a4d9175283ee6f795772ce9d4311f9f3a2b614e97e"},
     {"path":"../../tests/trial_window_regression.js","sha256":"ccf296f997e988bc978bd007641c9de3bdfb3f49150f20eb8cb330861b50cd19"},
-    {"path":"../../tests/test_ride_volume.py","sha256":"cbac815a520f0251423e9e68db462a695c745af0fa924b86f4732ea57eef8661"},
+    {"path":"../../tests/test_ride_volume.py","sha256":"c9f710f8711ed259b652441e1d8826563fc9deaebdb3f390a668b4f0940bda94"},
     {"path":"../../tests/test_ride_real_data.py","sha256":"3b69edf867eb4612af61e7465b2f4b9049e9d2fdc0afc0684d67b4c9cb29b73d"},
     {"path":"../../README.md","sha256":"ef82f8547e793c57769cbeae69e319823afacf74b4d6b8dc4152ef94e5a948fb"}
   ],

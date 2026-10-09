@@ -58,8 +58,8 @@
           "dtype": "int16_le",
           "microvolts_per_count": 0.01
         },
-        "initial_symmetric_limit_uv": 18.304557897863546,
-        "maximum_adjustable_limit_uv": 84.28246655967087,
+        "initial_symmetric_limit_uv": 18.2999992830446,
+        "maximum_adjustable_limit_uv": 84.28000001003966,
         "percentile": 99.5
       },
       "payload_units": "microvolts",
@@ -3439,9 +3439,9 @@
         "uncompressed_bytes": 44811592
       }
     },
-    "default_limit_uv": 18.304557897863546,
+    "default_limit_uv": 18.2999992830446,
     "dtype": "int16_le",
-    "max_abs_uv": 84.28246655967087,
+    "max_abs_uv": 84.28000001003966,
     "microvolts_per_count": 0.01,
     "percentile": 99.5,
     "shape": [
